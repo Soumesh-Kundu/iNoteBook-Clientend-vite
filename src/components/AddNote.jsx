@@ -17,17 +17,17 @@ export default function AddNote() {
         <>
             <div className="container my-3">
                 <h1>Add notes</h1>
-                <form>
+                <form onSubmit={handleAddNote}>
                     <div className="mb-3">
                         <label htmlFor="title" className="form-label">Add Title</label>
-                        <input type="text" name="title" value={note.title} className="form-control" id="title" aria-describedby="emailHelp"  onChange={onChange}/>
+                        <input type="text" name="title" value={note.title} className="form-control" id="title" aria-describedby="emailHelp"  onChange={onChange}  required/>
                     </div>
                     <div className="mb-3">
                         <label htmlFor="description" className="form-label">Give Description</label>
-                        <input type="text" name="description" value={note.description}className="form-control" id="desc"  onChange={onChange}/>
+                        <input type="text" name="description" value={note.description}className="form-control" id="desc"  onChange={onChange}  required/>
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="tag" className="form-label">Add Tag</label>
+                        <label htmlFor="tag" className="form-label">Add Tag (If You Want to)</label>
                         <input type="text" name="tag" value={note.tag} className="form-control" id="tag" onChange={onChange} />
                     </div>
                     <button type="submit" className="btn btn-primary" onClick={handleAddNote}>Add note</button>

@@ -4,15 +4,28 @@ import AddNote from "./AddNote"
 import { useNavigate } from "react-router-dom"
 import NoteItem from "./NoteItem"
 
-export default function Home() {
+export default function Home(props) {
+  const {setUserCredentials}=props
   const noteContextAPI = useContext(noteContext)
   const navigate=useNavigate()
   const { notes, getAllNotes, editNote } = noteContextAPI
   const InitialNote = { etitle: "", edescription: "", etag: "",id:"" }
   const [Modalnote, setModalNote] = useState(InitialNote)
-  useEffect(() => {
+  const fetchUserData=async()=>{
+    let response = await fetch("api/auth/getUser", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": localStorage.getItem("authToken"),
+        },
+      });
+      let data = await response.json();
+      setUserCredentials(data)
+    }
+    useEffect(() => {
     if(localStorage.getItem("authToken")){
       getAllNotes()
+      fetchUserData()
     }
     else{
       navigate('/login')

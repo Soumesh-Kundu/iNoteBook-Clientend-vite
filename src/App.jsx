@@ -15,6 +15,7 @@ import NoteState from "./context/notes/NoteState";
 function App() {
   const [alert, setAlert] = useState(null)
   const [alertTimer,setAlertTimer]=useState(null)
+  const [userCredentials, setUserCredentials] = useState({})
 
   const showAlert = (header, messege, type) => {
     clearTimeout(alertTimer)
@@ -34,11 +35,11 @@ function App() {
     <div className="App">
       <NoteState alert={showAlert} >
         <Router>
-          <Navbar showAlert={showAlert} />
+          <Navbar showAlert={showAlert} userCredentials={userCredentials} />
           <Alert alert={alert} />
           <div className="container">
             <Routes>
-              <Route path='/' element={<Home />} />
+              <Route path='/' element={<Home setUserCredentials={setUserCredentials}/>} />
               <Route path='/about' element={<About />} />
               <Route path='/login' element={<Login showAlert={showAlert} />} />
               <Route path='/signup' element={<SignUp showAlert={showAlert} />} />

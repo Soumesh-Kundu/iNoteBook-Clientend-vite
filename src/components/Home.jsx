@@ -12,7 +12,7 @@ export default function Home(props) {
   const InitialNote = { etitle: "", edescription: "", etag: "",id:"" }
   const [Modalnote, setModalNote] = useState(InitialNote)
   const fetchUserData=async()=>{
-    let response = await fetch("api/auth/getUser", {
+    let response = await fetch(`${import.meta.env.VITE_API_LINK}api/auth/getUser`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

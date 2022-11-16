@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useNavigate,Link } from "react-router-dom"
 
+
 export default function Login(props) {
     const [userData, setUserData] = useState({email:"",password:""})
     const navigate=useNavigate()
@@ -9,7 +10,8 @@ export default function Login(props) {
     }
     const handleOnSubmit=async (e)=>{
         e.preventDefault()
-        const response=await fetch("api/auth/login",{
+        // console.log(process.env.REACT_APP_API_LINK)
+        const response=await fetch(`${import.meta.env.VITE_API_LINK}api/auth/login`,{
             method:"POST",
             headers:{
                 "Content-Type": "application/json"

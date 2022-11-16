@@ -3,7 +3,7 @@ import { useState } from "react";
 const NoteState = (props) => {
   const [notes, setNotes] = useState([])
   const getAllNotes = async () => {
-    const response = await fetch(`api/notes/fetchAllNotes`, {
+    const response = await fetch(`${import.meta.env.VITE_API_LINK}api/notes/fetchAllNotes`, {
       method: 'GET',
       headers: {
         'auth-token': localStorage.getItem("authToken")
@@ -17,7 +17,7 @@ const NoteState = (props) => {
   //Add Note
   const addNote = async (title, description, tag) => {
     //TODO:API CALL
-    const response = await fetch(`api/notes/AddNote`, {
+    const response = await fetch(`${import.meta.env.VITE_API_LINK}api/notes/AddNote`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ const NoteState = (props) => {
     const EditNotes = JSON.parse(JSON.stringify(notes))
     const editableIndex = EditNotes.findIndex(obj => obj._id === id)
     //API CALL
-    const response = await fetch(`api/notes/updateNote/${id}`, {
+    const response = await fetch(`${import.meta.env.VITE_API_LINK}api/notes/updateNote/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -52,7 +52,7 @@ const NoteState = (props) => {
   //Delete Note
   const deleteNote = async(id) => {
     //TODO: API CALL
-    await fetch(`api/notes/deleteNote/${id}`, {
+    await fetch(`${import.meta.env.VITE_API_LINK}api/notes/deleteNote/${id}`, {
       method: 'DELETE',
       headers: {
         'auth-token': localStorage.getItem("authToken")

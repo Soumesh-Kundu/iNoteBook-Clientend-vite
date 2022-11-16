@@ -10,7 +10,7 @@ export default function SignUp(props) {
     const handleOnSubmit=async (e)=>{
         e.preventDefault()
         console.log(credentials)
-        const response=await fetch("api/auth/createUser",{
+        const response=await fetch(`${import.meta.env.VITE_API_LINK}api/auth/createUser`,{
             method:"POST",
             headers:{
                 "Content-Type": "application/json"
